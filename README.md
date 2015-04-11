@@ -1,4 +1,4 @@
-##React Social.  
+##React Social 
 ###If you have feedback please send my way.
 
 This is a little app to help me learn ReactJS.  It allows you to create users, and shows a user page with social data having to do with the hashtag associated with that user.  With this app I wanted to explore the page transition capabilities of React and learn about how React manages the state of an application.
