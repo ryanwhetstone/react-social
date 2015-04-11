@@ -1,4 +1,4 @@
-##This is a little project to help me learn ReactJS.  
+##This is a little app to help me learn ReactJS.  
 ###If you have feedback please send my way.
 
 #####To use:
