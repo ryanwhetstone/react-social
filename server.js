@@ -7,7 +7,7 @@ var express = require('express'),
 // initialise express
 var app = express();
 
-mongoose.connect('mongodb://localhost/reacttest');
+mongoose.connect('mongodb://localhost/react-social');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
