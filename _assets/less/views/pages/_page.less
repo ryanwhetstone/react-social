@@ -1,0 +1,43 @@
+body{
+	.transition(600ms);
+	height: 100%;
+	.scheme();
+
+	&.home{ 			.scheme(Cyan); }
+	&.users{ 			.scheme(#a3bd1f); }
+	&.create{ 		.scheme(RoyalBlue  ); }
+	&.default{ 		.scheme(DodgerBlue); }
+	&.red{ 				.scheme(red); }
+	&.blue{ 			.scheme(blue); }
+	&.green{ 			.scheme(green); }
+	&.orange{ 		.scheme(orange); }	
+	&.yellow{ 		.scheme(yellow); }	
+	&.magenta{ 		.scheme(Magenta); }
+
+	.main{
+		min-height: 100%;
+
+		h5{
+			font-size: 24px;
+			margin-top: 20px;
+			margin-bottom: 25px;
+			display: inline-block;
+			width: 50%;
+			text-transform: uppercase;
+			.ff-kalam();
+
+			span{
+				.ff-kalam();
+			}
+		}
+
+		button{
+			cursor: pointer;
+			margin-left: 4px;
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+}

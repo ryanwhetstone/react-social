@@ -1,0 +1,79 @@
+
+.text-color(@color, @light-color, @dark-color) when (lightness(@color) >= 75%) {
+	color: @dark-color;
+}
+
+.text-color(@color, @light-color, @dark-color) when (lightness(@color) < 75%) {
+	color: @light-color;
+}
+
+.spin-color(@color) when (lightness(@color) >= 60%) {
+	color: darken(spin(@color, 120), 70%);
+}
+
+.spin-color(@color) when (lightness(@color) < 60%) {
+	color: lighten(spin(@color, 180), 20%);
+}
+
+.scheme(@base-color:blue){
+	@complement: spin(@base-color, 180);
+	@complement-light: lighten(@complement, 10%);
+	@complement-dark: darken(@complement, 10%);
+	@base-light: lighten(@base-color, 15%);
+	@base-lighter: lighten(@base-color, 30%);
+	@base-dark: darken(@base-color, 15%);
+	@base-darker: darken(@base-color, 30%);
+	@base-light-spin: lighten(spin(@base-color, 5), 10%);
+	@base-lighter-spin: lighten(spin(@base-color, 10), 20%);
+	@base-dark-spin: darken(spin(@base-color, -5), 10%);
+	@base-darker-spin: darken(spin(@base-color, -10), 20%);
+	@base-light-saturated: saturate(@base-light, 60%);
+	@base-saturated: saturate(@base-color, 60%);
+	@base-complement-saturated: saturate(@complement, 60%);
+
+	background-color: @base-color;
+	// .text-color(@base-color, @base-complement-saturated, @base-darker);
+
+	a{
+		.text-color(@base-color, @base-complement-saturated, @base-darker);
+
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+
+	h5{
+		.text-color(@base-color, @base-complement-saturated, @base-darker);
+		font-weight: bold;
+	}
+
+	.color-scheme{
+		border-bottom: 1px solid @base-dark;
+		height: 21px;
+
+		div{
+			min-height: 20px;
+			&:nth-child(1){ background-color: @base-color; }
+			&:nth-child(2){ background-color: @complement; }
+			&:nth-child(3){ background-color: @base-light; }
+			&:nth-child(4){ background-color: @base-lighter; }
+			&:nth-child(5){ background-color: @base-darker; }
+			&:nth-child(6){ background-color: @base-complement-saturated; }
+		}
+	}		
+
+	.page-nav{
+		.text-color(@base-color, @base-complement-saturated, @base-darker);
+
+		a{
+			.text-color(@base-color, @base-complement-saturated, @base-darker);
+
+			&:hover, &.active{
+				.text-color(@base-color, darken(@base-complement-saturated, 20), darken(@base-darker, 20));
+			}
+		}
+	}
+	.form-control{
+		border-color: darken(@base-color, 30%);
+	}
+}

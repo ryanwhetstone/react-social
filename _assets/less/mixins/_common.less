@@ -1,0 +1,388 @@
+
+.gradient-button(@start-color:red, @hover-start-color: darken(red, 4%), @gradient-percent:18%, @gradient-invert:false, @hover-gradient-invert:false, @double-border:false, @round:3px, @text-color:#FFF, @padding:6px 12px, @font-size:14px){
+  @end-color: darken(@start-color, @gradient-percent);
+  border: 1px darken(@end-color, 4) solid;
+  .gradient(@start-color, @end-color, @start-color);
+  & when (@gradient-invert){
+    .gradient(@start-color, @start-color, @end-color);
+  }
+  .rounded(@round);
+  position: relative;
+  color: @text-color;
+  text-shadow: 0 0 12px darken(@end-color, 15%), 0 0 2px darken(@end-color, 25%);
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  padding: @padding;
+  font-size: @font-size;
+  line-height: 1.42857143;
+  .transition(0.4s);
+  text-decoration: none;
+
+  &:before when (@double-border = true){
+    .double-border( @round:@round, @border-color:lighten(@start-color,14) );
+  }
+
+  @hover-end-color: darken(@hover-start-color, @gradient-percent);
+  &:hover{
+    .gradient(@hover-start-color, @hover-start-color, @hover-end-color);
+    & when not(@gradient-invert){
+      & when not(@hover-gradient-invert){
+        .gradient(@hover-start-color, @hover-end-color, @hover-start-color);
+      }
+    }
+    & when (@gradient-invert){
+      & when(@hover-gradient-invert){
+        .gradient(@hover-start-color, @hover-end-color, @hover-start-color);
+      }
+    }
+
+    border: 1px darken(@hover-end-color, 4) solid;
+    text-decoration: none;
+    color: @text-color;
+    text-shadow: 0 0 12px darken(@hover-end-color, 15%), 0 0 2px darken(@hover-end-color, 25%);
+    .rounded(@round);
+  }
+  
+  &:active{
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  &:visited{
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  &:focus{
+    text-decoration: none;
+    color: @text-color ;
+  }
+}
+
+.border-gradient(@color:black, @width:1px) {
+  border-top: @width solid @color;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@color), to(transparent));
+  background-image: -webkit-linear-gradient(#000, transparent);
+  background-image:
+  -moz-linear-gradient(@color, transparent),
+  -moz-linear-gradient(@color, transparent);
+  background-image:
+  -o-linear-gradient(@color, transparent),
+  -o-linear-gradient(@color, transparent);
+  background-image: 
+  linear-gradient(@color, transparent),
+  linear-gradient(@color, transparent);
+  -moz-background-size: @width 100%;
+  background-size: @width 100%;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat; 
+}
+
+.double-border(@round:3px, @border-color:lighten(grey,10)) {
+  content: " ";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .rounded(@round);
+  .border-gradient(@border-color);
+}
+
+.flat-button(@bg-color:red, @hover-bg-color: darken(red, 5%), @double-border:false, @round:3px, @text-color:#FFF, @hover-text-color:#FFF, @padding:6px 12px, @font-size:14px){
+  border: 1px darken(@bg-color, 4) solid;
+  .rounded(@round);
+  position: relative;
+  color: @text-color;
+  text-shadow: 0 0 12px darken(@bg-color, 15%), 0 0 2px darken(@bg-color, 25%);
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  padding: @padding;
+  font-size: @font-size;
+  line-height: 1.42857143;
+  .transition(0.4s);
+  background: @bg-color;
+  box-shadow: none;
+  text-decoration: none;
+
+
+  &:before when (@double-border = true){
+    .double-border( @round:@round, @border-color:lighten(@bg-color,14) );
+  }
+
+  &:hover{
+    background-color: @hover-bg-color;
+    border: 1px darken(@hover-bg-color, 4) solid;
+    text-decoration: none;
+    color:@hover-text-color;
+    text-shadow: 0 0 12px darken(@hover-bg-color, 15%), 0 0 2px darken(@hover-bg-color, 25%);
+  }
+
+  &:active{
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  &:visited{
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  &:focus{
+    text-decoration: none;
+    color: @text-color ;
+  }
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -webkit-gradient(linear,
+   left bottom,
+   left top,
+   color-stop(0, @start),
+   color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom,
+    @start,
+    @stop);
+  background: -moz-linear-gradient(center bottom,
+   @start 0%,
+   @stop 100%);
+  background: -o-linear-gradient(@stop,
+   @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
+  background: @color;
+  background: -webkit-gradient(linear,
+   left bottom,
+   left top,
+   color-stop(0, rgb(@start,@start,@start)),
+   color-stop(1, rgb(@stop,@stop,@stop)));
+  background: -ms-linear-gradient(bottom,
+    rgb(@start,@start,@start) 0%,
+    rgb(@stop,@stop,@stop) 100%);
+  background: -moz-linear-gradient(center bottom,
+   rgb(@start,@start,@start) 0%,
+   rgb(@stop,@stop,@stop) 100%);
+  background: -o-linear-gradient(rgb(@stop,@stop,@stop),
+   rgb(@start,@start,@start));
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",rgb(@stop,@stop,@stop),rgb(@start,@start,@start)));
+}
+.bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE) {
+  border-top: solid 1px @top-color;
+  border-left: solid 1px @left-color;
+  border-right: solid 1px @right-color;
+  border-bottom: solid 1px @bottom-color;
+}
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+.rounded(@radius: 2px) {
+  border-radius: @radius;
+}
+.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box);
+}
+.opacity(@opacity: 0.5) {
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+.transition-duration(@duration: 0.2s) {
+  transition-duration: @duration;
+}
+.transform(...) {
+  transform: @arguments;
+}
+.rotation(@deg:5deg){
+  .transform(rotate(@deg));
+}
+.scale(@ratio:1.5){
+  .transform(scale(@ratio));
+}
+.transition(@duration:0.2s, @ease:ease-out) {
+  transition: all @duration @ease;
+}
+.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+  box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+.box-shadow(@arguments) {
+  box-shadow: @arguments;
+}
+.box-sizing(@sizing: border-box) {
+  box-sizing: @sizing;
+}
+.user-select(@argument: none) {
+  user-select: @argument;
+}
+.columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
+  column-width: @colwidth;
+  column-count: @colcount;
+  column-gap: @colgap;
+  column-rule-color: @columnRuleColor;
+  column-rule-style: @columnRuleStyle;
+  column-rule-width: @columnRuleWidth;
+}
+.translate(@x:0, @y:0) {
+  .transform(translate(@x, @y));
+}
+.background-clip(@argument: padding-box) {
+  background-clip: @argument;
+}
+.clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+.font-face (@family, @file-base, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: @family;
+    src: url("@{file-base}.eot");
+    src: url("@{file-base}.eot?#iefix") format("embedded-opentype"),
+    url("@{file-base}.woff") format("woff"),
+    url("@{file-base}.ttf") format("truetype");
+    font-weight: @weight;
+    font-style: @style;
+  }
+}
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+.center-content{
+  width:@container-width;
+  margin:0 auto;
+}
+
+.horizontal-list(@padding:5px 10px){
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li{
+    list-style: none;
+    display: inline-block;
+    padding: @padding;
+
+    &:first-child{
+      padding-left: 0;
+    }
+
+    &:last-child{
+      padding-right: 0;
+    }
+  }
+}
+
+// Removes default styling from list (<ul>)
+.plain-list() {
+  list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.triangle(@direction:right, @size:40px, @color: red){
+  width: 0; 
+  height: 0; 
+
+  & when (@direction = right){
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+    border-left: @size solid @color;
+  }
+
+  & when (@direction = left){
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+    border-right: @size solid @color;
+  }
+
+  & when (@direction = up){
+    border-left: @size solid transparent;
+    border-right: @size solid transparent;
+    border-bottom: @size solid @color;
+  }
+
+  & when (@direction = down){
+    border-left: @size solid transparent;
+    border-right: @size solid transparent;
+    border-top: @size solid @color;
+  }
+}
+
+.text-shadow(@bg-color: black){
+  text-shadow: 0 0 12px darken(@bg-color, 15%), 0 0 2px darken(@bg-color, 25%);
+}
+
+.same-height-columns {
+    display: table;
+
+    >[class*="col-"] {
+        float: none;
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}

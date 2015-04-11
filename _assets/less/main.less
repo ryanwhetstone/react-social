@@ -1,0 +1,39 @@
+// Configuration
+@import 'config/_variables';
+@import 'config/_typography';
+
+// Vendor
+@import 'vendor/_normalize';
+
+// Mixins
+@import 'mixins/_common';
+@import 'mixins/_color-scheme';
+
+// Visual
+@import 'modules/_elements';
+@import 'modules/_helpers';
+@import 'modules/_elements';
+
+// Layouts
+@import 'views/layouts/_master';
+
+// Partials
+@import 'views/partials/_header';
+
+// Pages
+@import 'views/pages/_page';
+@import 'views/pages/_page-user-show';
+
+// Adaptive
+@media screen and (max-width: 767px) {
+  // Visual
+  @import 'modules/_elements@768';
+
+  // Partials
+
+  // Pages
+
+  // Mixins
+  @import 'mixins/_common@768';
+
+}
